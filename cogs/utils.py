@@ -540,7 +540,7 @@ class Utility:
         await self.bot.say("```bf\n{}\n```".format(", ".join(users)))
         
         
-    @client.command()
+    @client.command(pass_context = True)
     async def define(*, word: str):
     """Browse Urban Dictionary."""
     defi = urbandict.define(word)
