@@ -538,6 +538,25 @@ class Utility:
                     if m.discriminator == author.discriminator and m != author]
 
         await self.bot.say("```bf\n{}\n```".format(", ".join(users)))
+        
+        
+    @client.command()
+    async def define(*, word: str):
+    """Browse Urban Dictionary."""
+    defi = urbandict.define(word)
+
+    definition = defi[0]['def']  # definition of the word
+    example = defi[0]['example']  # example of usage (if available)
+
+    # make an embedded message colored blue
+    embed = discord.Embed(title=word, description=definition, color=0x0062f4)
+    embed.add_field(name="Example", value=example, inline=False)
+    embed.set_footer(text="Urban Dictionary | requested by: {}",
+                     icon_url='https://cdn.discordapp.com/attachments/427833511215628308/451392381657546752/UDAppIcon.jpg')
+    embed.set_thumbnail(
+        url='https://cdn.discordapp.com/attachments/427833511215628308/451392241030660096/urban_dictionary.jpg')
+    await client.say(embed=embed)
+
 
 
 def setup(bot):
